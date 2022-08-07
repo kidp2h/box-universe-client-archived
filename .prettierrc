@@ -1,0 +1,12 @@
+{
+  "semi": true,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "printWidth": 100,
+  "tabWidth": 2,
+  "bracketSpacing": true,
+  "bracketSameLine": true,
+  "arrowParens": "always",
+  "react/jsx-wrap-multilines": true,
+  "jsx-wrap-multilines": true
+}

@@ -1,0 +1,7 @@
+query {
+  getListUsers {
+    username
+    password
+    email
+  }
+}

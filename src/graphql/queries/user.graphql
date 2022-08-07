@@ -1,0 +1,7 @@
+query getUser($userInput: UserInput!) {
+  getUser(userInput: $userInput) {
+    username
+    password
+    email
+  }
+}

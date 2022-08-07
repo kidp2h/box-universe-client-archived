@@ -1,0 +1,7 @@
+FROM node:lts
+WORKDIR /client
+COPY package.json .
+RUN yarn install
+COPY ./client .
+EXPOSE 5000
+CMD [ "yarn",  "dev" ]

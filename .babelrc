@@ -1,0 +1,28 @@
+{
+  "presets": ["next/babel"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "@components": "./src/components/",
+          "@images": "./src/public/images",
+          "@styles": "./src/styles/",
+          "@pages": "./src/pages/",
+          "@layouts": "./src/layouts/",
+          "@public": "./src/public/",
+          "@validations": "./src/validations/",
+          "@vendors": "./src/public/vendors/",
+          "@stores": "./src/stores/",
+          "@mutations": "./src/graphql/mutations/",
+          "@hooks": "./src/hooks/",
+          "@queries": "./src/graphql/queries/",
+          "@features": "./src/features/"
+        }
+      },
+      "@babel/plugin-transform-modules-commonjs"
+    ]
+  ],
+  "exclude": "/node_modules/"
+}

@@ -1,0 +1,9 @@
+.blobGradient,
+.blobBlur {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+.blobBlur {
+  filter: blur(30px);
+}
