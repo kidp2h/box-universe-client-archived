@@ -9,9 +9,6 @@ type Props = {
 };
 const BlobStatic = (props: Props) => {
   const { image, x, y } = props;
-  const sd = 5;
-  // FIXME:
-  console.log('x');
 
   return (
     <div className="lg:flex hidden">

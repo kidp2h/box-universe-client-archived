@@ -22,7 +22,6 @@ Home.getLayout = function getLayout(page: ReactElement) {
 };
 
 export async function getServerSideProps(ctx: any) {
-  console.log(Cookies.get('accessToken'), '62');
   const accessToken = ctx.req.cookies.accessToken;
   if (!accessToken) {
     return {
