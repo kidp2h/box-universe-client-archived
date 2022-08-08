@@ -1,6 +1,6 @@
 FROM node:lts
 WORKDIR /client
-COPY package.json .
+COPY ./client/package.json .
 RUN yarn install
 COPY ./client .
 EXPOSE 5000

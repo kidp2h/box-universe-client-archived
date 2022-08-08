@@ -228,6 +228,20 @@ const Login: NextPageWithLayout = () => {
   );
 };
 
+export async function getServerSideProps(ctx: any) {
+  const accessToken = ctx.req.cookies.accessToken;
+  if (accessToken) {
+    return {
+      redirect: {
+        destination: '/',
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
+
 Login.getLayout = function getLayout(page: ReactElement) {
   return <AuthLayout>{page}</AuthLayout>;
 };

@@ -28,7 +28,6 @@ type Inputs = {
   email: string;
 };
 const Register: NextPageWithLayout = () => {
-  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -269,6 +268,21 @@ const Register: NextPageWithLayout = () => {
     </>
   );
 };
+
+export async function getServerSideProps(ctx: any) {
+  const accessToken = ctx.req.cookies.accessToken;
+  if (accessToken) {
+    return {
+      redirect: {
+        destination: '/',
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
+
 Register.getLayout = function getLayout(page: ReactElement) {
   return <AuthLayout>{page}</AuthLayout>;
 };
