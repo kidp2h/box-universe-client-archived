@@ -18,6 +18,8 @@
           "@mutations": "./src/graphql/mutations/",
           "@hooks": "./src/hooks/",
           "@queries": "./src/graphql/queries/",
+          "@contexts": "./src/contexts/",
+          "@middlewares": "./src/middlewares/",
           "@features": "./src/features/"
         }
       },

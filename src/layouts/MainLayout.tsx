@@ -10,11 +10,17 @@ import { changePage } from '@features/app/appSlice';
 import ListFriendChat from '@components/ListFriendChat';
 import Image from 'next/image';
 import Sidebar from '@components/Sidebar';
+import { useAuth } from '@contexts/AuthContext';
+import withAuth from '../middlewares/auth';
 
 type Props = {
   children: ReactNode;
 };
 const MainLayout = (props: Props) => {
+  const { isAuthenticated, user } = useAuth();
+  /* eslint-disable */
+  console.log(isAuthenticated, user);
+
   const router = useRouter();
   const page = useSelector<RootState>((state) => state.appSlice.page) as string;
   const dispatch = useDispatch<StoreDispatch>();

@@ -6,12 +6,14 @@ import imageForm from '@images/logo.png';
 import bg from '@images/bg.png';
 import Image from 'next/image';
 import { ToastContainer } from 'react-toastify';
+import { useAuth } from '@contexts/AuthContext';
 
 type Props = {
   children: ReactNode;
 };
 const AuthLayout = (props: Props) => {
   const { children } = props;
+
   return (
     <>
       <Image

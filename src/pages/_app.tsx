@@ -9,6 +9,7 @@ import favicon from '@images/favicon.ico';
 import { ApolloProvider } from '@apollo/client';
 import client from '../ApolloClient';
 import { PersistGate } from 'redux-persist/integration/react';
+import { AuthProvider } from '@contexts/AuthContext';
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -29,7 +30,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
       <ApolloProvider client={client}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            {getLayout(<Component {...pageProps} />)}
+            <AuthProvider>{getLayout(<Component {...pageProps} />)}</AuthProvider>
           </PersistGate>
         </Provider>
       </ApolloProvider>
