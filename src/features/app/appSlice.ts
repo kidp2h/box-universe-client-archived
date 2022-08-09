@@ -6,7 +6,6 @@ type AppState = {
 };
 const initialState = {
   page: 'home',
-  user: null,
 } as AppState;
 const appSlice = createSlice({
   name: 'app',
@@ -15,11 +14,8 @@ const appSlice = createSlice({
     changePage(state, action: any) {
       return { ...state, page: action.payload };
     },
-    setUser(state, action: any) {
-      return { ...state, user: action.payload };
-    },
   },
 });
 
-export const { changePage, setUser } = appSlice.actions;
+export const { changePage } = appSlice.actions;
 export default appSlice.reducer;

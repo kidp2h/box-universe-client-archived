@@ -4,9 +4,15 @@ import Newsfeed from '@components/Newsfeed';
 import MainLayout from '@layouts/MainLayout';
 import Head from 'next/head';
 import { NextPageWithLayout } from './_app';
-import Cookies from 'js-cookie';
+import { useQuery } from '@apollo/client';
+import listUsers from '@queries/listUsers.graphql';
+import withAuth from '@middlewares/auth';
 
 const Home: NextPageWithLayout = () => {
+  const { data } = useQuery(listUsers);
+  /* eslint-disable */
+  // console.log(data);
+
   return (
     <>
       <Head>
@@ -21,17 +27,6 @@ Home.getLayout = function getLayout(page: ReactElement) {
   return <MainLayout>{page}</MainLayout>;
 };
 
-export async function getServerSideProps(ctx: any) {
-  const accessToken = ctx.req.cookies.accessToken;
-  if (!accessToken) {
-    return {
-      redirect: {
-        destination: '/auth/login',
-      },
-    };
-  }
-  return {
-    props: {},
-  };
-}
+export const getServerSideProps = withAuth(() => {});
+
 export default Home;

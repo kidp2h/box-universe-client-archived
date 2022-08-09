@@ -14,6 +14,7 @@ import MessageReceiver from '@components/MessageReceiver';
 import MainLayout from '@layouts/MainLayout';
 import Head from 'next/head';
 import { NextPageWithLayout } from './_app';
+import withAuth from '@middlewares/auth';
 
 const Chat: NextPageWithLayout = () => {
   const [showIcon, setShowIcon] = useState<boolean>(false);
@@ -141,7 +142,11 @@ const Chat: NextPageWithLayout = () => {
     </>
   );
 };
+
+export const getServerSideProps = withAuth(() => {});
+
 Chat.getLayout = function getLayout(page: ReactElement) {
   return <MainLayout>{page}</MainLayout>;
 };
+
 export default Chat;

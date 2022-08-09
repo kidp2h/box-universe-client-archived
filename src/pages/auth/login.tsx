@@ -22,14 +22,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import loginMutation from '@mutations/login.graphql';
 import useThrottle from '@hooks/useThrottle';
 import Cookies from 'js-cookie';
-import { useDispatch } from 'react-redux';
-import { StoreDispatch } from '@stores/app';
-import { setUser } from '@features/app/appSlice';
+import moment from 'moment';
 
 type Inputs = { username: string; password: string };
 const Login: NextPageWithLayout = () => {
   const router = useRouter();
-  const dispatch = useDispatch<StoreDispatch>();
   const [login] = useMutation(loginMutation);
 
   const {
@@ -63,8 +60,8 @@ const Login: NextPageWithLayout = () => {
               const { accessToken } = dataGraphql?.data?.login;
               Cookies.set('accessToken', accessToken, {
                 sameSite: 'Lax',
+                expires: moment().add(1209600, 'seconds').toDate(),
               });
-              dispatch(setUser(dataGraphql?.data?.login?.user?._id));
               return `Sign in to universe success !! You will automatically redirect to index`;
             },
             progressClassName: 'bg-purple-500',
