@@ -16,18 +16,15 @@ import LoginSchema from '@validations/LoginSchema';
 import { NextPageWithLayout } from '../_app';
 import AuthLayout from '@layouts/AuthLayout';
 import Head from 'next/head';
-import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import loginMutation from '@mutations/login.graphql';
 import useThrottle from '@hooks/useThrottle';
-import Cookies from 'js-cookie';
-import moment from 'moment';
+import { signIn } from 'next-auth/react';
 
 type Inputs = { username: string; password: string };
 const Login: NextPageWithLayout = () => {
   const router = useRouter();
-  const [login] = useMutation(loginMutation);
+  // const [login] = useMutation(loginMutation);
 
   const {
     register,
@@ -40,33 +37,32 @@ const Login: NextPageWithLayout = () => {
 
   const [disable, setDisable] = useState<boolean>(false);
 
+  const login = async (username: string, password: string) => {
+    try {
+      const response = await signIn('credentials', { username, password, redirect: true });
+      const error = response?.error;
+
+      if (error) return Promise.reject(new Error('Unauthorizied'));
+    } catch (error) {
+      return Promise.reject(new Error('Unauthorized'));
+    }
+  };
+
   const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
     if (!disable) {
       setDisable(true);
       const { username, password } = data;
+
       toast.promise(
-        login({
-          variables: {
-            userInput: {
-              username,
-              password,
-            },
-          },
-        }),
+        login(username, password),
         {
           success: {
-            render(result) {
-              const dataGraphql = result.data;
-              const { accessToken } = dataGraphql?.data?.login;
-              Cookies.set('accessToken', accessToken, {
-                sameSite: 'Lax',
-                expires: moment().add(1209600, 'seconds').toDate(),
-              });
+            render() {
               return `Sign in to universe success !! You will automatically redirect to index`;
             },
             progressClassName: 'bg-purple-500',
             onClose: () => {
-              router.replace('/', undefined, { shallow: true });
+              router.push('/', undefined, { shallow: true });
             },
           },
           error: {

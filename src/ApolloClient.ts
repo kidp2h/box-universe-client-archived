@@ -4,7 +4,6 @@ import Cookies from 'js-cookie';
 const httpLink = new HttpLink({
   uri: 'http://172.26.22.101:3000/graphql',
   headers: {},
-  
 });
 const authLink = new ApolloLink((operation, forward) => {
   const token = Cookies.get('accessToken');

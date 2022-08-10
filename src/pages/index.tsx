@@ -7,11 +7,16 @@ import { NextPageWithLayout } from './_app';
 import { useQuery } from '@apollo/client';
 import listUsers from '@queries/listUsers.graphql';
 import withAuth from '@middlewares/auth';
+import { useSession } from 'next-auth/react';
+import { getToken } from 'next-auth/jwt';
 
 const Home: NextPageWithLayout = () => {
   const { data } = useQuery(listUsers);
   /* eslint-disable */
   // console.log(data);
+  const { data: session, status } = useSession();
+
+  console.log(session);
 
   return (
     <>
@@ -27,6 +32,6 @@ Home.getLayout = function getLayout(page: ReactElement) {
   return <MainLayout>{page}</MainLayout>;
 };
 
-export const getServerSideProps = withAuth(() => {});
+// export const getServerSideProps = withAuth(() => {});
 
 export default Home;
