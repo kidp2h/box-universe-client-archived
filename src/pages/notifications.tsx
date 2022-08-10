@@ -9,6 +9,4 @@ Notifications.getLayout = function getLayout(page: ReactElement) {
   return <MainLayout>{page}</MainLayout>;
 };
 
-export const getServerSideProps = withAuth(() => {});
-
 export default Notifications;

@@ -143,8 +143,6 @@ const Chat: NextPageWithLayout = () => {
   );
 };
 
-export const getServerSideProps = withAuth(() => {});
-
 Chat.getLayout = function getLayout(page: ReactElement) {
   return <MainLayout>{page}</MainLayout>;
 };
