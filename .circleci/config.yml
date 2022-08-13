@@ -5,8 +5,8 @@ jobs:
       - image: cimg/node:lts
     steps:
       - checkout
-      - run: node --version
-      - run: npm -v
+      - run: npm install -g yarn@latest
+      - run: yarn install
 workflows:
   Install-Yarn:
     jobs:
