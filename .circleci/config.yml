@@ -6,6 +6,7 @@ jobs:
     steps:
       - checkout
       - run: node --version
+      - run: npm -v
 workflows:
   Install-Yarn:
     jobs:
