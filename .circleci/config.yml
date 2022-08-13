@@ -11,7 +11,7 @@ jobs:
       - image: cimg/node:lts
     steps:
       - checkout
-      - run: ls
+      - run: ls -a
   build:
     docker:
       - image: cimg/node:lts
