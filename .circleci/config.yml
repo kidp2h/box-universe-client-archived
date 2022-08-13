@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   InstallYarn:
     docker:
-      - image: cimg/base:lts
+      - image: cimg/node:lts
     steps:
       - checkout
       - run: node --version
