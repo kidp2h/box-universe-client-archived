@@ -1,0 +1,30 @@
+name: BUILD
+
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: Use this repository
+      - uses: actions/checkout@v2
+
+      - name: Use NodeJS
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies package
+      - uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: install
+
+      - name: Build this project
+      - uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: build
