@@ -6,23 +6,18 @@ jobs:
     steps:
       - checkout
       - run: npm install -g yarn@latest
-  dependencies:
-    docker:
-      - image: cimg/node:lts
-    steps:
-      - checkout
-      - run: ls -a
+      - run: yarn -v
   build:
     docker:
       - image: cimg/node:lts
     steps:
       - checkout
+      - run: yarn -v
       - run: yarn install
       - run: yarn build
 workflows:
   build:
     jobs:
       - yarn
-      - dependencies
       - build
   
