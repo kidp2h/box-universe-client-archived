@@ -8,6 +8,7 @@ import {
 } from 'react-icons/io5';
 import Link from 'next/link';
 import ItemSidebar from '@components/ItemSidebar';
+import { signOut } from 'next-auth/react';
 
 type Props = {
   page: string;
@@ -74,13 +75,13 @@ const Sidebar = (props: Props) => {
             <div className="dot rounded-full w-1 h-1  bg-green-500 absolute right-2 top-1/2" />
           </div>
           <div className="item flex justify-center relative items-center ">
-            <div className="rounded-full p-3 glass-blur cursor-pointer icon-item">
-              <Link href="/auth/login" passHref>
+            <button onClick={() => signOut({ callbackUrl: '/auth/login' })}>
+              <div className="rounded-full p-3 glass-blur cursor-pointer icon-item">
                 <ItemSidebar>
                   <IoExitOutline size={20} className="text-white" />
                 </ItemSidebar>
-              </Link>
-            </div>
+              </div>
+            </button>
             <div className="dot rounded-full w-1 h-1  bg-green-500 absolute right-2 top-1/2" />
           </div>
         </div>

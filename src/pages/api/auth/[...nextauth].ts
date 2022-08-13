@@ -1,9 +1,10 @@
-import NextAuth, { NextAuthOptions } from 'next-auth';
+import NextAuth, { CookieOption, NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import client from '../../../ApolloClient';
 import login from '@mutations/login.graphql';
 import jwt from 'jsonwebtoken';
 import { JWT } from 'next-auth/jwt';
+import { CookieSerializeOptions } from 'cookie';
 
 export const decode = async (data: any) => {
   const { secret, token } = data;
@@ -23,6 +24,13 @@ export const encode = async (data: any) => {
     algorithm: 'HS512',
   });
   return accessToken;
+};
+
+export const cookiesOptions: CookieSerializeOptions = {
+  sameSite: 'lax',
+  secure: true,
+  httpOnly: true,
+  path: '/',
 };
 
 export const authOptions: NextAuthOptions = {
@@ -77,6 +85,26 @@ export const authOptions: NextAuthOptions = {
     error: '/auth/login',
     newUser: '/auth/register',
     verifyRequest: '/auth/verify',
+  },
+  cookies: {
+    sessionToken: {
+      name: 'accessToken',
+      options: {
+        ...cookiesOptions,
+      },
+    },
+    csrfToken: {
+      name: 'csrfToken',
+      options: {
+        ...cookiesOptions,
+      },
+    },
+    callbackUrl: {
+      name: 'callbackUrl',
+      options: {
+        ...cookiesOptions,
+      },
+    },
   },
   callbacks: {
     async signIn({ user }) {

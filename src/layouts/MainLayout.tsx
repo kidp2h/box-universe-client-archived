@@ -17,10 +17,6 @@ type Props = {
   children: ReactNode;
 };
 const MainLayout = (props: Props) => {
-  const { isAuthenticated, user } = useAuth();
-  /* eslint-disable */
-  console.log(isAuthenticated, user);
-
   const router = useRouter();
   const page = useSelector<RootState>((state) => state.appSlice.page) as string;
   const dispatch = useDispatch<StoreDispatch>();
@@ -58,4 +54,4 @@ const MainLayout = (props: Props) => {
     </>
   );
 };
-export default React.memo(MainLayout);
+export default withAuth(React.memo(MainLayout));

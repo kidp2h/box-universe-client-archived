@@ -9,6 +9,11 @@ export default withAuth(function middleware(req: NextRequest) {}, {
       return true;
     },
   },
+  cookies: {
+    sessionToken: {
+      name: 'accessToken',
+    },
+  },
 });
 
 export const config = { matcher: ['/chat', '/notifications'] };
