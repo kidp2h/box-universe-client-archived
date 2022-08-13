@@ -22,5 +22,5 @@ workflows:
   build:
     jobs:
       - yarn
-      - dependencie
+      - dependencies
   
