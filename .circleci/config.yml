@@ -1,12 +1,11 @@
 version: 2.1
-
 jobs:
   InstallYarn:
     docker:
-      - image: cimg/node:stable
+      - image: cimg/base:lts
     steps:
       - checkout
-      - run: npm -v
+      - run: node --version
 workflows:
   Install-Yarn:
     jobs:
