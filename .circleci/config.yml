@@ -1,13 +1,27 @@
 version: 2.1
 jobs:
-  InstallYarn:
+  yarn:
     docker:
       - image: cimg/node:lts
     steps:
       - checkout
       - run: npm install -g yarn@latest
+  dependencies:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
       - run: yarn install
+  build:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - run: yarn build
 workflows:
-  Install-Yarn:
+  build:
     jobs:
-      - InstallYarn
+      - yarn
+      - dependencies
+      - build
+  
