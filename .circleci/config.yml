@@ -1,14 +1,12 @@
 version: 2.1
 
-orbs:
-  node: circleci/node@5.0.2
 jobs:
   InstallYarn:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/node:stable
     steps:
-      
-      - node/install-yarn
+      - checkout
+      - run: npm -v
 workflows:
   Install-Yarn:
     jobs:
