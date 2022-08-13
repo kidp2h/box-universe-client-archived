@@ -11,7 +11,7 @@ jobs:
       - image: cimg/node:lts
     steps:
       - checkout
-      - run: yarn install
+      - run: ls
   build:
     docker:
       - image: cimg/node:lts
@@ -22,6 +22,5 @@ workflows:
   build:
     jobs:
       - yarn
-      - dependencies
-      - build
+      - dependencie
   
