@@ -12,11 +12,6 @@ import { getToken } from 'next-auth/jwt';
 
 const Home: NextPageWithLayout = () => {
   const { data } = useQuery(listUsers);
-  /* eslint-disable */
-  // console.log(data);
-  const { data: session, status } = useSession();
-
-  console.log(session);
 
   return (
     <>

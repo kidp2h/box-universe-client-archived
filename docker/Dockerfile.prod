@@ -1,8 +1,9 @@
 FROM node:lts
 WORKDIR /client
-COPY package.json .
+COPY ./client/package.json .
 RUN yarn install --production
 COPY ./client .
 EXPOSE 5000
 CMD [ "yarn", "build" ]
 CMD ["yarn", "start"]
+

@@ -6,7 +6,7 @@ import imageForm from '@images/logo.png';
 import bg from '@images/bg.png';
 import Image from 'next/image';
 import { ToastContainer } from 'react-toastify';
-import { useAuth } from '@contexts/AuthContext';
+import withLogout from '@middlewares/logout';
 
 type Props = {
   children: ReactNode;
@@ -52,4 +52,4 @@ const AuthLayout = (props: Props) => {
     </>
   );
 };
-export default memo(AuthLayout);
+export default withLogout(memo(AuthLayout));
