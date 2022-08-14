@@ -18,5 +18,7 @@ workflows:
   build:
     jobs:
       - build
+  lint:
+    jobs:
       - lint
   
