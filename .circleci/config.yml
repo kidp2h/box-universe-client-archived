@@ -6,8 +6,8 @@ jobs:
     steps:
       - checkout
       - run: yarn install
+      - run: yarn lint
       - run: yarn build
-      - run: yarn start
 workflows:
   build:
     jobs:
